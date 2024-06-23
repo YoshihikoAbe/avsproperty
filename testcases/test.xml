@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<avs>
+  <entry_s8 __type="s8">123</entry_s8>
+  <entry_s8 __type="s8" __count="2">1 2</entry_s8>
+  <entry_u8 __type="u8">123</entry_u8>
+  <entry_u8 __type="u8" __count="2">1 2</entry_u8>
+  <entry_s16 __type="s16">123</entry_s16>
+  <entry_s16 __type="s16" __count="2">1 2</entry_s16>
+  <entry_u16 __type="u16">123</entry_u16>
+  <entry_u16 __type="u16" __count="2">1 2</entry_u16>
+  <entry_s32 __type="s32">123</entry_s32>
+  <entry_s32 __type="s32" __count="2">1 2</entry_s32>
+  <entry_u32 __type="time">123</entry_u32>
+  <entry_u32 __type="time" __count="2">1 2</entry_u32>
+  <entry_s64 __type="s64">123</entry_s64>
+  <entry_s64 __type="s64" __count="2">1 2</entry_s64>
+  <entry_u64 __type="u64">123</entry_u64>
+  <entry_u64 __type="u64" __count="2">1 2</entry_u64>
+  <entry_bin __type="bin" __size="3">080903</entry_bin>
+  <entry_str __type="str" escaped="&quot;'&amp;">&lt;&gt;</entry_str>
+  <entry_str __type="str">test</entry_str>
+  <entry_ip4 __type="ip4" host="eamuse.konami.fun">10.2.11.201</entry_ip4>
+  <entry_ip4 __type="ip4" __count="2">10.2.143.61 10.2.143.67</entry_ip4>
+  <entry_time __type="time">123</entry_time>
+  <entry_time __type="time" __count="2">1 2</entry_time>
+  <entry_float __type="float">123.099998</entry_float>
+  <entry_float __type="float" __count="2">1.000000 2.000000</entry_float>
+  <entry_double __type="double">123.100000</entry_double>
+  <entry_double __type="double" __count="2">1.000000 2.000000</entry_double>
+  <entry_2s8 __type="2s8">1 2</entry_2s8>
+  <entry_2s8 __type="2s8" __count="2">1 2 3 4</entry_2s8>
+  <entry_2u8 __type="2u8">1 2</entry_2u8>
+  <entry_2u8 __type="2u8" __count="2">1 2 3 4</entry_2u8>
+  <entry_2s16 __type="2s16">1 2</entry_2s16>
+  <entry_2s16 __type="2s16" __count="2">1 2 3 4</entry_2s16>
+  <entry_2u16 __type="2u16">1 2</entry_2u16>
+  <entry_2u16 __type="2u16" __count="2">1 2 3 4</entry_2u16>
+  <entry_2s32 __type="2s32">1 2</entry_2s32>
+  <entry_2s32 __type="2s32" __count="2">1 2 3 4</entry_2s32>
+  <entry_2u32 __type="2u32">1 2</entry_2u32>
+  <entry_2u32 __type="2u32" __count="2">1 2 3 4</entry_2u32>
+  <entry_vs64 __type="2s64">1 2</entry_vs64>
+  <entry_vs64 __type="2s64" __count="2">1 2 3 4</entry_vs64>
+  <entry_vu64 __type="2u64">1 2</entry_vu64>
+  <entry_vu64 __type="2u64" __count="2">1 2 3 4</entry_vu64>
+  <entry_2f __type="2f">1.000000 2.000000</entry_2f>
+  <entry_2f __type="2f" __count="2">1.000000 2.000000 3.000000 4.000000</entry_2f>
+  <entry_vd __type="2d">1.000000 2.000000</entry_vd>
+  <entry_vd __type="2d" __count="2">1.000000 2.000000 3.000000 4.000000</entry_vd>
+  <entry_3s8 __type="3s8">1 2 3</entry_3s8>
+  <entry_3s8 __type="3s8" __count="2">1 2 3 4 5 6</entry_3s8>
+  <entry_3u8 __type="3u8">1 2 3</entry_3u8>
+  <entry_3u8 __type="3u8" __count="2">1 2 3 4 5 6</entry_3u8>
+  <entry_3s16 __type="3s16">1 2 3</entry_3s16>
+  <entry_3s16 __type="3s16" __count="2">1 2 3 4 5 6</entry_3s16>
+  <entry_3u16 __type="3u16">1 2 3</entry_3u16>
+  <entry_3u16 __type="3u16" __count="2">1 2 3 4 5 6</entry_3u16>
+  <entry_3s32 __type="3s32">1 2 3</entry_3s32>
+  <entry_3s32 __type="3s32" __count="2">1 2 3 4 5 6</entry_3s32>
+  <entry_3u32 __type="3u32">1 2 3</entry_3u32>
+  <entry_3u32 __type="3u32" __count="2">1 2 3 4 5 6</entry_3u32>
+  <entry_3s64 __type="3s64">1 2 3</entry_3s64>
+  <entry_3s64 __type="3s64" __count="2">1 2 3 4 5 6</entry_3s64>
+  <entry_3u64 __type="3u64">1 2 3</entry_3u64>
+  <entry_3u64 __type="3u64" __count="2">1 2 3 4 5 6</entry_3u64>
+  <entry_3f __type="3f">1.000000 2.000000 3.000000</entry_3f>
+  <entry_3f __type="3f" __count="2">1.000000 2.000000 3.000000 4.000000 5.000000 6.000000</entry_3f>
+  <entry_3d __type="3d">1.000000 2.000000 3.000000</entry_3d>
+  <entry_3d __type="3d" __count="2">1.000000 2.000000 3.000000 4.000000 5.000000 6.000000</entry_3d>
+  <entry_4s8 __type="4s8">1 2 3 4</entry_4s8>
+  <entry_4s8 __type="4s8" __count="2">1 2 3 4 5 6 7 8</entry_4s8>
+  <entry_4u8 __type="4u8">1 2 3 4</entry_4u8>
+  <entry_4u8 __type="4u8" __count="2">1 2 3 4 5 6 7 8</entry_4u8>
+  <entry_4s16 __type="4s16">1 2 3 4</entry_4s16>
+  <entry_4s16 __type="4s16" __count="2">1 2 3 4 5 6 7 8</entry_4s16>
+  <entry_4u16 __type="4u16">1 2 3 4</entry_4u16>
+  <entry_4u16 __type="4u16" __count="2">1 2 3 4 5 6 7 8</entry_4u16>
+  <entry_vs32 __type="4s32">1 2 3 4</entry_vs32>
+  <entry_vs32 __type="4s32" __count="2">1 2 3 4 5 6 7 8</entry_vs32>
+  <entry_vu32 __type="4u32">1 2 3 4</entry_vu32>
+  <entry_vu32 __type="4u32" __count="2">1 2 3 4 5 6 7 8</entry_vu32>
+  <entry_4s64 __type="4s64">1 2 3 4</entry_4s64>
+  <entry_4s64 __type="4s64" __count="2">1 2 3 4 5 6 7 8</entry_4s64>
+  <entry_4u64 __type="4u64">1 2 3 4</entry_4u64>
+  <entry_4u64 __type="4u64" __count="2">1 2 3 4 5 6 7 8</entry_4u64>
+  <entry_vf __type="4f">1.000000 2.000000 3.000000 4.000000</entry_vf>
+  <entry_vf __type="4f" __count="2">1.000000 2.000000 3.000000 4.000000 5.000000 6.000000 7.000000 8.000000</entry_vf>
+  <entry_4d __type="4d">1.000000 2.000000 3.000000 4.000000</entry_4d>
+  <entry_4d __type="4d" __count="2">1.000000 2.000000 3.000000 4.000000 5.000000 6.000000 7.000000 8.000000</entry_4d>
+  <entry_vs8 __type="vs8">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16</entry_vs8>
+  <entry_vs8 __type="vs8" __count="2">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32</entry_vs8>
+  <entry_vu8 __type="vu8">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16</entry_vu8>
+  <entry_vu8 __type="vu8" __count="2">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32</entry_vu8>
+  <entry_vs16 __type="vs16">1 2 3 4 5 6 7 8</entry_vs16>
+  <entry_vs16 __type="vs16" __count="2">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16</entry_vs16>
+  <entry_vu16 __type="vu16">1 2 3 4 5 6 7 8</entry_vu16>
+  <entry_vu16 __type="vu16" __count="2">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16</entry_vu16>
+  <entry_bool __type="bool">1</entry_bool>
+  <entry_bool __type="bool" __count="2">1 0</entry_bool>
+  <entry_2b __type="2b">1 0</entry_2b>
+  <entry_2b __type="2b" __count="2">1 0 0 1</entry_2b>
+  <entry_3b __type="3b">1 0 1</entry_3b>
+  <entry_3b __type="3b" __count="2">1 0 0 0 0 1</entry_3b>
+  <entry_4b __type="4b">1 0 0 1</entry_4b>
+  <entry_4b __type="4b" __count="2">1 0 0 0 0 0 0 1</entry_4b>
+  <entry_vb __type="vb">1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1</entry_vb>
+  <entry_vb __type="vb" __count="2">1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1</entry_vb>
+</avs>
