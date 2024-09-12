@@ -10,14 +10,18 @@ import (
 )
 
 var (
-	testcaseBinary []byte
-	testcaseXML    []byte
-	testcaseNode   *Node
+	testcaseBinary     []byte
+	testcaseBinaryLong []byte
+	testcaseXML        []byte
+	testcaseNode       *Node
 )
 
 func init() {
 	var err error
 	if testcaseBinary, err = os.ReadFile("testcases/test.bin"); err != nil {
+		panic(err)
+	}
+	if testcaseBinaryLong, err = os.ReadFile("testcases/test_long.bin"); err != nil {
 		panic(err)
 	}
 	if testcaseXML, err = os.ReadFile("testcases/test.xml"); err != nil {
@@ -32,30 +36,39 @@ func init() {
 }
 
 func TestRoundtrip(t *testing.T) {
-	data := testcaseBinary
-	prop := &Property{}
-	format := FormatBinary
-	for i := 0; i < 2; i++ {
-		prop.Root = nil
-		if err := prop.Read(bytes.NewReader(data)); err != nil {
-			t.Fatalf("%d: read: %v", i, err)
-		}
-		if prop.Settings.Format != format {
-			t.Fatal("incorrect format")
-		}
-
-		format = (format + 1) % 2
-		prop.Settings.Format = format
-
-		wr := &bytes.Buffer{}
-		if err := prop.Write(wr); err != nil {
-			t.Fatalf("%d: write: %v", i, err)
-		}
-		data = wr.Bytes()
+	testcases := [][]byte{
+		testcaseBinary,
+		testcaseBinaryLong,
 	}
 
-	if !bytes.Equal(data, testcaseBinary) {
-		t.Fatal("roundtrip failed")
+	prop := &Property{}
+	format := FormatBinary
+
+	for i, testcase := range testcases {
+		data := testcase
+		for i := 0; i < 2; i++ {
+			prop.Root = nil
+			if err := prop.Read(bytes.NewReader(data)); err != nil {
+				t.Fatalf("%d: read: %v", i, err)
+			}
+			if prop.Settings.Format != format {
+				t.Fatal("incorrect format")
+			}
+
+			format = (format + 1) % 2
+			prop.Settings.Format = format
+
+			wr := &bytes.Buffer{}
+			if err := prop.Write(wr); err != nil {
+				t.Fatalf("%d: write: %v", i, err)
+			}
+			data = wr.Bytes()
+		}
+
+		if !bytes.Equal(data, testcase) {
+			os.Stdout.Write(data)
+			t.Fatalf("%d: roundtrip failed", i)
+		}
 	}
 }
 

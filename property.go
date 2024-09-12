@@ -23,8 +23,9 @@ const (
 )
 
 type PropertySettings struct {
-	Format   PropertyFormat
-	Encoding *Encoding
+	Format           PropertyFormat
+	Encoding         *Encoding
+	UseLongNodeNames bool
 }
 
 // Property represents a property tree.

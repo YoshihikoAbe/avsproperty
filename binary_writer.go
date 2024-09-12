@@ -44,7 +44,11 @@ func (state *binaryWriteState) write() error {
 }
 
 func (state *binaryWriteState) writeHeader() error {
-	if err := binary.Write(state.wr, binary.BigEndian, uint16(binaryMagic)); err != nil {
+	magic := binaryMagic
+	if state.prop.Settings.UseLongNodeNames {
+		magic = binaryMagicLong
+	}
+	if err := binary.Write(state.wr, binary.BigEndian, uint16(magic)); err != nil {
 		return err
 	}
 
@@ -93,7 +97,8 @@ func (state *binaryWriteState) writeMetadataStart(node *Node) error {
 		return err
 	}
 
-	if err := node.name.writeBinary(state.wr); err != nil {
+	long := state.prop.Settings.UseLongNodeNames
+	if err := node.name.writeBinary(state.wr, long); err != nil {
 		return err
 	}
 
@@ -101,7 +106,7 @@ func (state *binaryWriteState) writeMetadataStart(node *Node) error {
 		if err := wr.WriteByte(typeAttribute); err != nil {
 			return err
 		}
-		if err := attrib.key.writeBinary(state.wr); err != nil {
+		if err := attrib.key.writeBinary(state.wr, long); err != nil {
 			return err
 		}
 	}
@@ -116,9 +121,10 @@ func (state *binaryWriteState) writeMetadataEnd(node *Node) error {
 func (state *binaryWriteState) calculateMetadataSize(node *Node) (n int, padding int, err error) {
 	node.Traverse(func(node *Node) error {
 		// start, end, name size, and name
-		n += 3 + node.name.packedSize()
+		long := state.prop.Settings.UseLongNodeNames
+		n += 3 + node.name.binarySize(long)
 		for _, attrib := range node.attributes {
-			n += 2 + attrib.key.packedSize()
+			n += 2 + attrib.key.binarySize(long)
 		}
 		return nil
 	}, nil)

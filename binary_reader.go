@@ -8,9 +8,10 @@ import (
 )
 
 const (
-	binaryMagic       = 0xA042
-	maxValueSize      = 0x1000000
-	arrayMask    byte = (1 << 6)
+	binaryMagic          = 0xA042
+	binaryMagicLong      = 0xA045
+	maxValueSize         = 0x1000000
+	arrayMask       byte = (1 << 6)
 
 	maxMetaDepth = 100
 )
@@ -53,9 +54,14 @@ func (state *binaryReadState) readHeader() error {
 		return err
 	}
 
-	if binary.BigEndian.Uint16(header) != binaryMagic {
+	if magic := binary.BigEndian.Uint16(header); magic == binaryMagic {
+		state.prop.Settings.UseLongNodeNames = false
+	} else if magic == binaryMagicLong {
+		state.prop.Settings.UseLongNodeNames = true
+	} else {
 		return propertyError("invalid magic number")
 	}
+
 	if header[2] != ^header[3] {
 		return propertyError("invalid encoding checksum")
 	}
@@ -99,7 +105,7 @@ func (state *binaryReadState) readMetadata() error {
 		}
 
 		name := &NodeName{}
-		read, err := name.readBinary(state.rd)
+		read, err := name.readBinary(state.rd, state.prop.Settings.UseLongNodeNames)
 		if err != nil {
 			return err
 		}

@@ -105,18 +105,28 @@ func (n *NodeName) String() string {
 	return string(b)
 }
 
-func (n *NodeName) readBinary(rd io.Reader) (uint8, error) {
+func (n *NodeName) readBinary(rd io.Reader, long bool) (uint8, error) {
 	size, err := rd.(io.ByteReader).ReadByte()
 	if err != nil {
 		return 0, err
+	}
+	if long {
+		size -= 63
 	}
 	if size > nodeNameSize || size == 0 {
 		return 0, propertyError("invalid node name size")
 	}
 
 	physicalSize := (size*6 + 7) / 8
+	if long {
+		physicalSize = size
+	}
+
 	if _, err := io.ReadFull(rd, n.data[:physicalSize]); err != nil {
 		return 0, err
+	}
+	if long {
+		n.Set(string(n.data[:physicalSize]))
 	}
 
 	// check if the name starts with "__"
@@ -128,16 +138,27 @@ func (n *NodeName) readBinary(rd io.Reader) (uint8, error) {
 	return physicalSize + 1, nil
 }
 
-func (n *NodeName) writeBinary(wr io.Writer) error {
-	if err := wr.(io.ByteWriter).WriteByte(byte(n.length)); err != nil {
-		return err
+func (n *NodeName) writeBinary(wr io.Writer, long bool) (err error) {
+	size := n.length
+	if long {
+		size += 63
+	}
+	if err = wr.(io.ByteWriter).WriteByte(byte(size)); err != nil {
+		return
 	}
 
-	_, err := wr.Write(n.data[:n.packedSize()])
+	if long {
+		_, err = wr.Write([]byte(n.String()))
+	} else {
+		_, err = wr.Write(n.data[:n.binarySize(false)])
+	}
 	return err
 }
 
-func (n *NodeName) packedSize() int {
+func (n *NodeName) binarySize(long bool) int {
+	if long {
+		return n.length
+	}
 	return (n.length*6 + 7) / 8
 }
 
