@@ -113,6 +113,30 @@ func TestTypes(t *testing.T) {
 	}
 }
 
+func TestCopy(t *testing.T) {
+	root, _ := NewNode("root")
+	orig, _ := root.NewNode("test")
+	orig.SetAttribute("hoge", "fuga")
+	orig.NewNodeWithValue("child", int32(123))
+
+	copy := orig.ShallowCopy()
+	if copy == orig {
+		t.Fatal("copied node points to original node")
+	}
+	if copy.attributes[0] == orig.attributes[0] {
+		t.Fatal("attribute pointers of both nodes are the same")
+	}
+	if copy.parent != nil {
+		t.Fatal("copied node has a non-nil parent")
+	}
+	if copy.children[0].parent != copy {
+		t.Fatal("child of copied node refers to original parent")
+	}
+
+	t.Logf("original : %+v", orig)
+	t.Logf("copy     : %+v", copy)
+}
+
 func BenchmarkReadBinary(b *testing.B) {
 	prop := Property{}
 	rd := bytes.NewReader(testcaseXML)

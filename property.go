@@ -211,6 +211,35 @@ func (n *Node) IsArray() bool {
 	return n.isArray
 }
 
+// ShallowCopy creates a shallow copy of the node and its children.
+// Changes made to node names, attribute keys, and mutable values,
+// will be reflected in both copies.
+func (n Node) ShallowCopy() *Node {
+	new := &n
+	new.parent = nil
+
+	if new.attributes != nil {
+		oldAttribs := new.attributes
+		new.attributes = make([]*Attribute, len(oldAttribs))
+		for i, oldAttrib := range oldAttribs {
+			newAttrib := *oldAttrib
+			new.attributes[i] = &newAttrib
+		}
+	}
+
+	if new.children != nil {
+		oldChildren := new.children
+		new.children = make([]*Node, len(oldChildren))
+		for i, oldChild := range oldChildren {
+			newChild := oldChild.ShallowCopy()
+			newChild.parent = new
+			new.children[i] = newChild
+		}
+
+	}
+	return new
+}
+
 // Children returns a list of the Node's children. The returned slice is
 // owned by the Node and should not be modified in any way.
 // This function may return nil if the Node does not have any children
